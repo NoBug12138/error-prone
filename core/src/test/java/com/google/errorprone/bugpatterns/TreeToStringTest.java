@@ -16,7 +16,9 @@
 
 package com.google.errorprone.bugpatterns;
 
+import com.google.common.collect.ImmutableList;
 import com.google.errorprone.CompilationTestHelper;
+import com.google.errorprone.util.RuntimeVersion;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -46,6 +48,11 @@ public class TreeToStringTest {
             "    return Description.NO_MATCH;",
             "  }",
             "}")
+        .setArgs(
+            RuntimeVersion.isAtLeast9()
+                ? ImmutableList.of(
+                    "--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED")
+                : ImmutableList.of())
         .doTest();
   }
 
@@ -77,6 +84,11 @@ public class TreeToStringTest {
             "    return Description.NO_MATCH;",
             "  }",
             "}")
+        .setArgs(
+            RuntimeVersion.isAtLeast9()
+                ? ImmutableList.of(
+                    "--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED")
+                : ImmutableList.of())
         .doTest();
   }
 }

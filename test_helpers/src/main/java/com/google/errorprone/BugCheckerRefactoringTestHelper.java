@@ -179,6 +179,11 @@ public class BugCheckerRefactoringTestHelper {
     return this;
   }
 
+  public BugCheckerRefactoringTestHelper setArgs(ImmutableList<String> args) {
+    this.options = args;
+    return this;
+  }
+
   public BugCheckerRefactoringTestHelper setArgs(String... args) {
     this.options = ImmutableList.copyOf(args);
     return this;
